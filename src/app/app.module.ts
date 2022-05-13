@@ -8,19 +8,27 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PlaylistAnalysisComponent } from './components/playlist-analysis/playlist-analysis.component';
 import { TrackCardComponent } from './components/track-card/track-card.component';
+import { PlaylistBrowserComponent } from './components/playlist-browser/playlist-browser.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { TrackStatsComponent } from './components/track-stats/track-stats.component';
+import { PlaylistInfoComponent } from './components/playlist-browser/playlist-info/playlist-info.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         TrackCardComponent,
-        PlaylistAnalysisComponent
+        PlaylistAnalysisComponent,
+        PlaylistBrowserComponent,
+        TrackStatsComponent,
+        PlaylistInfoComponent
     ],
     imports: [
         BrowserModule,
         AppRoutingModule,
         BrowserAnimationsModule,
         HttpClientModule,
-        MatCardModule
+        MatCardModule, 
+        ReactiveFormsModule
     ],
     providers: [],
     bootstrap: [AppComponent]

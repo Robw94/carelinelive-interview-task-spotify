@@ -1,0 +1,35 @@
+.container {
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    grid-template-rows: 1fr 1fr; 
+    gap: 0px 0px; 
+    grid-template-areas: 
+      "Image description"
+      "Image Stats"; 
+  }
+  .Image { grid-area: Image; }
+  .Stats { grid-area: Stats; }
+  .description { grid-area: description; }
+
+
+ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+li {
+    border: 1px solid black;
+    cursor: pointer;
+    min-width: 500px;
+    max-width: 500px;
+    background-color: gray;
+    color: white;
+}
+
+li :hover {
+    background-color: gray;
+}
+
+li p {
+    margin-bottom: 0;
+}

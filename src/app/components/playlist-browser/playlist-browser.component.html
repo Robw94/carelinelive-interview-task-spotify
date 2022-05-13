@@ -1,0 +1,62 @@
+<div class="row">
+    <div class="col-md-2">
+
+    </div>
+    <div class="col-md-8">
+        <div class="row d-flex">
+            <div class="col d-flex justify-content-center container-fluid">
+                <form [formGroup]="filterForm">
+                    <input class="search" type="text" formControlName="searchText" placeholder="search for playlists"
+                        autofocus>
+                    <ul>
+                        <div *ngIf="search$ | async as searchResults" class="dropdown">
+                            <div *ngFor="let item of searchResults" class="div">
+                                <app-playlist-info [playlistSearchResult]="item"
+                                    (playlistSelected)="playlistSelected($event)"></app-playlist-info>
+                            </div>
+
+                        </div>
+                    </ul>
+                </form>
+            </div>
+        </div>
+
+        <div class="row">
+            <main class="playlist" *ngIf="playlist$ | async as playlist">
+                <header class="playlist-header">
+                    <img [src]="playlist.images[0].url" alt="">
+
+                    <div class="playlist-details">
+                        <h1>{{ playlist.name }}</h1>
+                        <p>{{ playlist.description }}</p>
+                        <p>{{ playlist.owner.name }}</p>
+                    </div>
+                </header>
+
+                <aside class="playlist-col">
+                    <h2>Tracks</h2>
+                    <p>{{ playlist.tracks.total }} tracks</p>
+
+                    <div class="playlist-col-content playlist-tracks">
+                        <app-track-card *ngFor="let track of playlist.tracks.items" [track]="track">
+                        </app-track-card>
+                    </div>
+                </aside>
+
+                <article class="playlist-col">
+                    <h2>Some us some cool stuff!</h2>
+
+                    <div class="playlist-col-content playlist-analysis">
+                        <app-playlist-analysis [playlist]="playlist">
+
+                        </app-playlist-analysis>
+                    </div>
+                </article>
+            </main>
+
+        </div>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+</div>

@@ -4,7 +4,7 @@ import { bufferCount, EMPTY, expand, from, map, mergeMap, Observable, of, reduce
 import { CLIENT_ID, CLIENT_SECRET } from '../../../environments/credentials';
 import { AudioFeatures, AudioFeaturesResponse } from './models/audio-features';
 import { createSimplePlaylist, SimplePlaylist } from './models/simple-playlist';
-import { Image, Item, SpotifyPlaylist } from './models/spotify-playlist';
+import { Image, Item, SpotifyPlaylist, Track } from './models/spotify-playlist';
 
 interface SpotifyTokenResponseBody {
     access_token: string;
@@ -97,10 +97,11 @@ export class SpotifyApiService {
         );
     }
 
-    searchPlaylists(query: string, token: string): Observable<PlaylistSearchResult[]> {
+    searchPlaylists(query: string, limit: number, token: string): Observable<PlaylistSearchResult[]> {
         return this.http.get<{ playlists: { items: SpotifyPlaylist[] } }>('https://api.spotify.com/v1/search', {
             params: {
                 q: query,
+                limit: limit,
                 type: 'playlist',
             },
             headers: {
@@ -111,6 +112,7 @@ export class SpotifyApiService {
             name: playlist.name,
             description: playlist.name,
             images: playlist.images,
+            tracks: playlist.tracks
         }))));
     }
 }
@@ -120,4 +122,9 @@ export interface PlaylistSearchResult {
     name: string;
     description: string;
     images: Image[];
+    tracks: PlaylistTrackInfo;
+}
+
+export interface PlaylistTrackInfo {
+    total: number;
 }

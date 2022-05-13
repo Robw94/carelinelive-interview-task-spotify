@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { switchMap } from 'rxjs';
 import { SpotifyApiService } from './services/spotify/spotify-api.service';
+import { SpotifyTokenService } from './services/spotify/spotify-token.service';
 
 @Component({
     selector: 'app-root',
@@ -16,11 +17,14 @@ export class AppComponent {
     );
 
     search$ = this.token$.pipe(
-        switchMap(token => this.spotify.searchPlaylists('test', token))
+        switchMap(token => this.spotify.searchPlaylists('test',5, token))
     );
 
     constructor(
+        private tokenService: SpotifyTokenService,
         private spotify: SpotifyApiService,
     ) {
+
+        this.tokenService.getToken().subscribe();
     }
 }

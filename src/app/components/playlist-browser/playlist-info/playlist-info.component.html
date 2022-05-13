@@ -1,0 +1,17 @@
+<li (click)="onPlaylistSelected(playlistSearchResult.id)">
+    <div class="container">
+        <div class="Image">
+            <aside class="playlist-col">
+                <p> Playlist Name {{playlistSearchResult.name}}</p>
+                <img src="{{playlistSearchResult.images[0]?.url}}" alt="" width="75" height="75">
+
+            </aside>
+        </div>
+        <div class="Stats"><p>Total Tracks: {{playlistSearchResult.tracks.total}}</p></div>
+        <div class="description">{{playlistSearchResult.description}}</div>
+    </div>
+
+
+
+    <!-- test -->
+</li>
