@@ -1,3 +1,5 @@
+import { Details } from "../spotify-playlist.service";
+
     export interface ExternalUrls {
         spotify: string;
     }
@@ -27,20 +29,17 @@
     }
 
     export interface Playlist {
-        collaborative: boolean;
         description: string;
-        external_urls: ExternalUrls;
         href: string;
         id: string;
         images: Image[];
         name: string;
-        owner: Owner;
         primary_color?: any;
         public?: any;
-        snapshot_id: string;
         tracks: Tracks;
         type: string;
         uri: string;
+        details: Details;
     }
 
     export interface FeaturedPlaylist {
