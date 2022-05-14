@@ -1,0 +1,10 @@
+<mat-card class="example-card" *ngIf="playlist">
+    <mat-card-title-group>
+        <mat-card-title>{{playlist?.name}}</mat-card-title>
+        <mat-card-subtitle>Tracks: {{playlist?.tracks?.total}}</mat-card-subtitle>
+        <img mat-card-xl-image src="{{playlist.images[0].url}}">
+    </mat-card-title-group>
+    <mat-card-content>
+
+    </mat-card-content>
+</mat-card>

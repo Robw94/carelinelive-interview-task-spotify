@@ -1,0 +1,11 @@
+test
+<section>
+    <div class="row">
+        <ng-container *ngFor="let item of staticData.featuredPlaylists">
+            <div class="col">
+                <app-featured-playlist-card [playlist]="item"></app-featured-playlist-card>
+            </div>
+        </ng-container>
+    </div>
+
+</section>

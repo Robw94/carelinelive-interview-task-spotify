@@ -12,6 +12,8 @@ import { PlaylistBrowserComponent } from './components/playlist-browser/playlist
 import { ReactiveFormsModule } from '@angular/forms';
 import { TrackStatsComponent } from './components/track-stats/track-stats.component';
 import { PlaylistInfoComponent } from './components/playlist-browser/playlist-info/playlist-info.component';
+import { FeaturedPlaylistsComponent } from './components/featured-playlists/featured-playlists.component';
+import { FeaturedPlaylistCardComponent } from './components/featured-playlists/featured-playlist-card/featured-playlist-card.component';
 
 @NgModule({
     declarations: [
@@ -20,7 +22,9 @@ import { PlaylistInfoComponent } from './components/playlist-browser/playlist-in
         PlaylistAnalysisComponent,
         PlaylistBrowserComponent,
         TrackStatsComponent,
-        PlaylistInfoComponent
+        PlaylistInfoComponent,
+        FeaturedPlaylistsComponent,
+        FeaturedPlaylistCardComponent,
     ],
     imports: [
         BrowserModule,

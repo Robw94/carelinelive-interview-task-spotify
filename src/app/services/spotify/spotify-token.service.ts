@@ -13,7 +13,11 @@ interface SpotifyTokenResponseBody {
   providedIn: 'root'
 })
 export class SpotifyTokenService {
-  private _tokenSubject: BehaviorSubject<SpotifyTokenResponseBody | null> = new BehaviorSubject<SpotifyTokenResponseBody | null>(null);
+  private _tokenSubject: BehaviorSubject<SpotifyTokenResponseBody> = new BehaviorSubject<SpotifyTokenResponseBody>({
+    access_token: '',
+    token_type: '',
+    expires_in: 0,
+  });
 
 
   // idea was to make a dashboard for overall stats and use this to use the same token.
@@ -22,7 +26,7 @@ export class SpotifyTokenService {
   constructor(private http: HttpClient
   ) { }
 
-  getToken(): Observable<SpotifyTokenResponseBody> {
+  getToken(): Observable<string> {
     const body = new HttpParams({
       fromObject: {
         grant_type: 'client_credentials',
@@ -35,8 +39,9 @@ export class SpotifyTokenService {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
     }).pipe(
-      tap(response => console.log('Got access token:', response)),
-      tap(response => this._tokenSubject.next(response))
+      tap(response => this._tokenSubject.next(response)),
+      map(response => response.access_token)
+
     );
   }
 }

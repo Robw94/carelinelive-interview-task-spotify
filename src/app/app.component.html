@@ -1,35 +1,9 @@
-
+<header>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a [routerLink]="['/featured']">Featured Playlists</a></li>
+      </ul>
+</header>
 <router-outlet></router-outlet>
 
-<!-- <main class="playlist" *ngIf="playlist$ | async as playlist">
-    <header class="playlist-header">
-        <img [src]="playlist.images[0].url" alt="">
-
-        <div class="playlist-details">
-            <h1>{{ playlist.name }}</h1>
-            <p>{{ playlist.description }}</p>
-            <p>{{ playlist.owner.name }}</p>
-        </div>
-    </header>
-
-    <aside class="playlist-col">
-        <h2>Tracks</h2>
-        <p>{{ playlist.tracks.total }} tracks</p>
-
-        <div class="playlist-col-content playlist-tracks">
-            <app-track-card *ngFor="let track of playlist.tracks.items"
-                            [track]="track">
-            </app-track-card>
-        </div>
-    </aside>
-
-    <article class="playlist-col">
-        <h2>Some us some cool stuff!</h2>
-
-        <div class="playlist-col-content playlist-analysis">
-            <app-playlist-analysis [playlist]="playlist">
-
-            </app-playlist-analysis>
-        </div>
-    </article>
-</main> -->
+<footer></footer>

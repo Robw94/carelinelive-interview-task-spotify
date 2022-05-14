@@ -9,20 +9,9 @@ import { SpotifyTokenService } from './services/spotify/spotify-token.service';
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-    token$ = this.spotify.getToken();
-
-    // https://open.spotify.com/playlist/0UA4PppdcKIKojVy5iSVoD
-    playlist$ = this.token$.pipe(
-        switchMap(token => this.spotify.playlist('0UA4PppdcKIKojVy5iSVoD', token))
-    );
-
-    search$ = this.token$.pipe(
-        switchMap(token => this.spotify.searchPlaylists('test',5, token))
-    );
 
     constructor(
         private tokenService: SpotifyTokenService,
-        private spotify: SpotifyApiService,
     ) {
 
         this.tokenService.getToken().subscribe();

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { debounceTime, EMPTY, Observable, Subject, switchMap, takeUntil } from 'rxjs';
+import { debounceTime, EMPTY, Observable, of, Subject, switchMap, takeUntil } from 'rxjs';
 import { SimplePlaylist } from 'src/app/services/spotify/models/simple-playlist';
 import { PlaylistSearchResult, SpotifyApiService } from 'src/app/services/spotify/spotify-api.service';
+import { SpotifyPlaylistService } from 'src/app/services/spotify/spotify-playlist.service';
 import { SpotifyTokenService } from 'src/app/services/spotify/spotify-token.service';
 
 @Component({
@@ -22,9 +23,10 @@ export class PlaylistBrowserComponent implements OnInit {
 
   search$!: Observable<PlaylistSearchResult[]>
 
-  playlist$!: Observable<SimplePlaylist> 
+  playlist$!: Observable<SimplePlaylist>
 
-  constructor(private service: SpotifyApiService, private spotifyTokenService: SpotifyTokenService) {
+  test$!: Observable<any>;
+  constructor(private service: SpotifyApiService, private spotifyTokenService: SpotifyTokenService, private test: SpotifyPlaylistService) {
     this.spotifyTokenService.token$.pipe(takeUntil(this.onDestroy$)).subscribe(tokenResult => {
       if (!tokenResult) {
         return;
@@ -35,8 +37,6 @@ export class PlaylistBrowserComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
-
     this.filterForm.controls["searchText"].valueChanges.pipe(
       // added debounce time to not spam the endpoint
       debounceTime(500),
@@ -48,14 +48,14 @@ export class PlaylistBrowserComponent implements OnInit {
 
 
   getPlaylists(searchText: string): void {
-    this.search$ = this.service.searchPlaylists(searchText,5, this.token).pipe(debounceTime(100));
+    this.search$ = this.service.searchPlaylists(searchText, 5, this.token).pipe(debounceTime(100));
 
   }
 
   playlistSelected(id: string): void {
     // set search to empty to close the suggestions
     this.search$ = EMPTY;
-    this.playlist$ =  this.service.playlist(id, this.token)
+    this.playlist$ = this.service.playlist(id, this.token)
   }
 
 }

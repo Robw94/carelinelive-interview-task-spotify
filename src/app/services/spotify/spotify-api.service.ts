@@ -6,11 +6,6 @@ import { AudioFeatures, AudioFeaturesResponse } from './models/audio-features';
 import { createSimplePlaylist, SimplePlaylist } from './models/simple-playlist';
 import { Image, Item, SpotifyPlaylist, Track } from './models/spotify-playlist';
 
-interface SpotifyTokenResponseBody {
-    access_token: string;
-    token_type: string;
-    expires_in: number;
-}
 
 interface PlaylistTracksResponse {
     href: string;
@@ -27,25 +22,6 @@ export class SpotifyApiService {
         private http: HttpClient
     ) {
     }
-
-    getToken(): Observable<string> {
-        const body = new HttpParams({
-            fromObject: {
-                grant_type: 'client_credentials',
-            }
-        });
-
-        return this.http.post<SpotifyTokenResponseBody>('https://accounts.spotify.com/api/token', body.toString(), {
-            headers: {
-                'Authorization': 'Basic ' + btoa(`${CLIENT_ID}:${CLIENT_SECRET}`),
-                'Content-Type': 'application/x-www-form-urlencoded',
-            },
-        }).pipe(
-            tap(response => console.log('Got access token:', response)),
-            map(response => response.access_token)
-        );
-    }
-
     playlist(id: string, token: string): Observable<SimplePlaylist> {
         const requestOptions = {
             headers: {
