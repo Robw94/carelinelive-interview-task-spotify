@@ -10,10 +10,10 @@ import { PlaylistAnalysisComponent } from './components/playlist-analysis/playli
 import { TrackCardComponent } from './components/track-card/track-card.component';
 import { PlaylistBrowserComponent } from './components/playlist-browser/playlist-browser.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { TrackStatsComponent } from './components/track-stats/track-stats.component';
 import { PlaylistInfoComponent } from './components/playlist-browser/playlist-info/playlist-info.component';
 import { FeaturedPlaylistsComponent } from './components/featured-playlists/featured-playlists.component';
 import { FeaturedPlaylistCardComponent } from './components/featured-playlists/featured-playlist-card/featured-playlist-card.component';
+import { NgxChartsModule }from '@swimlane/ngx-charts';
 
 @NgModule({
     declarations: [
@@ -21,7 +21,6 @@ import { FeaturedPlaylistCardComponent } from './components/featured-playlists/f
         TrackCardComponent,
         PlaylistAnalysisComponent,
         PlaylistBrowserComponent,
-        TrackStatsComponent,
         PlaylistInfoComponent,
         FeaturedPlaylistsComponent,
         FeaturedPlaylistCardComponent,
@@ -30,6 +29,7 @@ import { FeaturedPlaylistCardComponent } from './components/featured-playlists/f
         BrowserModule,
         AppRoutingModule,
         BrowserAnimationsModule,
+        NgxChartsModule,
         HttpClientModule,
         MatCardModule, 
         ReactiveFormsModule
