@@ -39,6 +39,7 @@ export class SpotifyTokenService {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
     }).pipe(
+      // update token subject, so we dont have to keep getting a access_token with every call
       tap(response => this._tokenSubject.next(response)),
       map(response => response.access_token)
 

@@ -9,19 +9,29 @@
     <li>Search for a playlist, or pick from a selection</li>
     <li>Sorting the list of tracks by a given attribute</li>
 </ul> -->
-
-
-<ngx-charts-bar-horizontal 
-    *ngIf="!isLoading"
-    [view]="[800,400]"
-    [results]="popularTracks"
-    [xAxisLabel]="'Popularity (0-100)'"
-    [legendTitle]="'Popular Tracks'"
-    [yAxisLabel]="'Track Name'"
-    [legend]="true"
-    [showXAxisLabel]="true"
-    [showYAxisLabel]="true"
-    [xAxis]="true"
-    [yAxis]="true"
-    [gradient]="true">
-</ngx-charts-bar-horizontal>
+<mat-progress-spinner *ngIf="isLoading" class="example-margin" [color]="'primary'" [mode]="'indeterminate'" style="margin:0 auto;">
+</mat-progress-spinner>
+<div class="row">
+    <div class="col-md-6">
+        <mat-card style="max-width: 650px;">
+            <div style="display: grid; min-height: 300px;">
+                <ngx-charts-bar-horizontal *ngIf="!isLoading" [results]="popularTracks"
+                    [xAxisLabel]="'Popularity (0-100)'" [legendTitle]="'Popular Tracks'" [yAxisLabel]="'Track Name'"
+                    [legend]="true" [showXAxisLabel]="true" [showYAxisLabel]="false" [xAxis]="true" [yAxis]="true"
+                    [gradient]="true">
+                </ngx-charts-bar-horizontal>
+            </div>
+        </mat-card>
+    </div>
+    <div class="col-md-6">
+        <mat-card style="max-width: 650px;">
+            <div style="display: grid; min-height: 300px;">
+                <ngx-charts-bar-horizontal *ngIf="!isLoading" [results]="popularTracks"
+                    [xAxisLabel]="'Popularity (0-100)'" [legendTitle]="'Popular Tracks'" [yAxisLabel]="'Track Name'"
+                    [legend]="true" [showXAxisLabel]="true" [showYAxisLabel]="false" [xAxis]="true" [yAxis]="true"
+                    [gradient]="true">
+                </ngx-charts-bar-horizontal>
+            </div>
+        </mat-card>
+    </div>
+</div>

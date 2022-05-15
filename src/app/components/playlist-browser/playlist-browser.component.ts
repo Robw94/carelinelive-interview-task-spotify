@@ -62,4 +62,13 @@ export class PlaylistBrowserComponent implements OnInit {
     })
   }
 
+  getDanceability(): number {
+    var sum = this.playlist.tracks.items.reduce((acc, obj) => {
+      let value = obj.features ? obj.features?.danceability : 0;     
+      return acc + value;
+    }, 0)
+
+    return Math.round(sum / this.playlist.tracks.items.length  * 100);
+  }
+
 }

@@ -14,7 +14,10 @@ import { PlaylistInfoComponent } from './components/playlist-browser/playlist-in
 import { FeaturedPlaylistsComponent } from './components/featured-playlists/featured-playlists.component';
 import { FeaturedPlaylistCardComponent } from './components/featured-playlists/featured-playlist-card/featured-playlist-card.component';
 import { NgxChartsModule }from '@swimlane/ngx-charts';
-
+import { MdePopoverModule } from '@material-extended/mde';
+import { MatButtonModule } from '@angular/material/button';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 @NgModule({
     declarations: [
         AppComponent,
@@ -32,7 +35,12 @@ import { NgxChartsModule }from '@swimlane/ngx-charts';
         NgxChartsModule,
         HttpClientModule,
         MatCardModule, 
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        MatCardModule,
+        MatButtonModule,
+        MatToolbarModule,
+        MdePopoverModule,
+        MatProgressSpinnerModule
     ],
     providers: [],
     bootstrap: [AppComponent]

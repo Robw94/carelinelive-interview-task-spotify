@@ -18,49 +18,16 @@
                 </form>
             </div>
         </div>
-
-        <!-- <div class="row">
-            <main class="playlist" *ngIf="playlist">
-                <header class="playlist-header">
-                    <img [src]="playlist.images[0].url" alt="">
-
-                    <div class="playlist-details">
-                        <h1>{{ playlist.name }}</h1>
-                        <p>{{ playlist.description }}</p>
-                        <p>{{ playlist.owner.name }}</p>
-                    </div>
-                </header>
-
-                <aside class="playlist-col">
-                    <h2>Tracks</h2>
-                    <p>{{ playlist.tracks.total }} tracks</p>
-
-                    <div class="playlist-col-content playlist-tracks">
-                        <app-track-card *ngFor="let track of playlist.tracks.items" [track]="track">
-                        </app-track-card>
-                    </div>
-                </aside>
-
-                <article class="playlist-col" style="overflow-y: auto">
-                    <div class="playlist-col-content playlist-analysis">
-                        <app-playlist-analysis [playlist]="playlist">
-
-                        </app-playlist-analysis>
-                    </div>
-                </article>
-            </main>
-
-        </div> -->
     </div>
 </div>
 <main class="playlist" *ngIf="playlist">
     <header class="playlist-header">
         <img [src]="playlist.images[0].url" alt="">
-
         <div class="playlist-details">
             <h1>{{ playlist.name }}</h1>
             <p>{{ playlist.description }}</p>
             <p>{{ playlist.owner.name }}</p>
+            <p>Dancability of album: {{getDanceability()}}</p>
         </div>
     </header>
 
