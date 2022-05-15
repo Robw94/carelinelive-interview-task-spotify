@@ -1,4 +1,4 @@
-<p>Ideas:</p>
+<!-- <p>Ideas:</p>
 
 <ul>
     <li>What's the most popular track?</li>
@@ -6,10 +6,22 @@
     <li>Distribution of BPM</li>
     <li>What is the danceability of the current playlist?</li>
     <li>Is this track loud or quiet?</li>
-    <li>
-        Use a charting library (such as <a href="https://github.com/swimlane/ngx-charts">ngx-charts</a>) to visualise
-        distribution of different audio features.
-    </li>
     <li>Search for a playlist, or pick from a selection</li>
     <li>Sorting the list of tracks by a given attribute</li>
-</ul>
+</ul> -->
+
+
+<ngx-charts-bar-horizontal 
+    *ngIf="!isLoading"
+    [view]="[800,400]"
+    [results]="popularTracks"
+    [xAxisLabel]="'Popularity (0-100)'"
+    [legendTitle]="'Popular Tracks'"
+    [yAxisLabel]="'Track Name'"
+    [legend]="true"
+    [showXAxisLabel]="true"
+    [showYAxisLabel]="true"
+    [xAxis]="true"
+    [yAxis]="true"
+    [gradient]="true">
+</ngx-charts-bar-horizontal>

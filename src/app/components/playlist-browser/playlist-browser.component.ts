@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { debounceTime, EMPTY, Observable, of, Subject, switchMap, takeUntil } from 'rxjs';
+import { combineLatest, debounceTime, EMPTY, finalize, Observable, of, Subject, switchMap, takeUntil } from 'rxjs';
 import { SimplePlaylist } from 'src/app/services/spotify/models/simple-playlist';
 import { PlaylistSearchResult, SpotifyApiService } from 'src/app/services/spotify/spotify-api.service';
 import { SpotifyPlaylistService } from 'src/app/services/spotify/spotify-playlist.service';
@@ -23,7 +23,7 @@ export class PlaylistBrowserComponent implements OnInit {
 
   search$!: Observable<PlaylistSearchResult[]>
 
-  playlist$!: Observable<SimplePlaylist>
+  playlist!: SimplePlaylist
 
   test$!: Observable<any>;
   constructor(private service: SpotifyApiService, private spotifyTokenService: SpotifyTokenService, private test: SpotifyPlaylistService) {
@@ -44,18 +44,22 @@ export class PlaylistBrowserComponent implements OnInit {
       takeUntil(this.onDestroy$)).subscribe(text => {
         this.getPlaylists(text);
       })
+
   }
 
 
   getPlaylists(searchText: string): void {
     this.search$ = this.service.searchPlaylists(searchText, 5, this.token).pipe(debounceTime(100));
-
   }
 
   playlistSelected(id: string): void {
     // set search to empty to close the suggestions
     this.search$ = EMPTY;
-    this.playlist$ = this.service.playlist(id, this.token)
+    const sub = this.service.playlist(id, this.token).pipe(finalize(() => {
+      sub.unsubscribe();
+    })).subscribe(result => {
+      this.playlist = result;
+    })
   }
 
 }
