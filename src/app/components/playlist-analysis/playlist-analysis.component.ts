@@ -40,6 +40,10 @@ export class PlaylistAnalysisComponent implements OnInit, OnDestroy, OnChanges {
         })
 
     }
+
+    /**
+     * Refresh the analysis data when playlist changes
+     */
     ngOnChanges(changes: SimpleChanges): void {
         if (this._playlist) {
             console.log(this._playlist);
@@ -48,7 +52,7 @@ export class PlaylistAnalysisComponent implements OnInit, OnDestroy, OnChanges {
             this.isLoading = true;
             combineLatest([this.playlistService.getTopXPopularTracksOld(this.playlist.tracks.items.map(i => i.id), 10, this.token)]).pipe(finalize(() => {
                 this.isLoading = false;
-            })).subscribe(([popularTracks]: [Track[]]) => {
+            }), takeUntil(this.onDestroy$)).subscribe(([popularTracks]: [Track[]]) => {
                 popularTracks.forEach(i => this.popularTracks.push({ name: i.name.toString(), value: i.popularity }));
                 this.getTempoData();
                 this.artistData = this.getArtistData();
